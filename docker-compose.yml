@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  instagram-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: instagram-api
+    restart: unless-stopped
+    environment:
+      - API_TOKEN=${API_TOKEN}
+      - PORT=5000
+    expose:
+      - "5000"
+    networks:
+      - proxy_manager
+
+networks:
+  proxy_manager:
+    external: true
+    name: proxy_manager
